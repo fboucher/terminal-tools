@@ -24,10 +24,32 @@ ADDED_ANY=0
 if ! grep -Fq "alias \\?=" "$RC_FILE"; then
     {
         echo "";
-        echo "# Reka AI Chat Alias";
+        echo "# AI Chat Alias";
         echo "alias \\?=\"$AI_CHAT_SCRIPT\"";
     } >> "$RC_FILE"
     echo "✓ Added chat alias '?'"
+    ADDED_ANY=1
+fi
+
+
+# Add translation aliases if missing
+if ! grep -Fq "alias \\?fr-en=" "$RC_FILE"; then
+    {
+        echo "";
+        echo "# French to English Translation Alias";
+        echo "alias \\?fr-en=\"$SCRIPT_DIR/translate.sh\"";
+    } >> "$RC_FILE"
+    echo "✓ Added translation alias '?fr-en'"
+    ADDED_ANY=1
+fi
+
+if ! grep -Fq "alias \\?en-fr=" "$RC_FILE"; then
+    {
+        echo "";
+        echo "# English to French Translation Alias";
+        echo "alias \\?en-fr=\"$SCRIPT_DIR/translate.sh\"";
+    } >> "$RC_FILE"
+    echo "✓ Added translation alias '?en-fr'"
     ADDED_ANY=1
 fi
 
